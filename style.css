@@ -1,0 +1,21 @@
+.nav {
+    padding-top: 2%;
+}
+
+.lista-relax {
+    background-color: #00db3756;
+}
+
+.lista-pronto {
+    background-color: #ffc10756;
+}
+
+.lista-urgente {
+    background-color: #dc354652;
+}
+
+
+/*.v-center{
+    display: flex;
+    align-items: center;
+  }
