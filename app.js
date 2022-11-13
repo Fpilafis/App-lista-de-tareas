@@ -8,6 +8,12 @@ let btnNuevaTarea = document.getElementById("btn-agregar");
 let btnNuevaTareaPronto = document.getElementById("btn-agregar-pronto");
 let btnNuevaTareaUrgente = document.getElementById("btn-agregar-urgente");
 
+/*if(localStorage.getItem("listaRelax")){
+    listaRelax = JSON.parse(localStorage.getItem("listaRelax"))
+}*/
+
+
+
 //Funciones
 let agregarTarea = function(){
     let tarea = tareaInput.value;
@@ -39,6 +45,8 @@ let agregarTarea = function(){
         });
         
     }
+
+    //localStorage.setItem("listaRelax", JSON.stringify(listaRelax))
 };
 
 let agregarTareaPronto = function(){

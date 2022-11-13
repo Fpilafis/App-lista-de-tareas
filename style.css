@@ -1,6 +1,16 @@
 .nav {
     padding-top: 2%;
 }
+/*h1 {
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+}*/
+
+h1 {
+    padding-bottom: 1%;
+    padding-top: 1%;
+}
 
 .lista-relax {
     background-color: #00db3756;
