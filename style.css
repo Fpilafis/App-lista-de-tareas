@@ -24,6 +24,12 @@ h1 {
     background-color: #dc354652;
 }
 
+.boton {
+    /*justify-content: right;*/
+    margin-left: 97%;
+    
+    border-radius: 3px;
+}
 
 /*.v-center{
     display: flex;

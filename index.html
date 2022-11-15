@@ -15,7 +15,7 @@
         <div class="container-sm">
             <form class="d-flex" role="search">
                 <!--INPUT PARA AGREGAR LA TAREA-->
-                <input class="form-control me-2" id="tareaInput" type="text" placeholder="Agrega tu tarea" aria-label="text">
+                <input class="form-control me-2" id="tareaInput" type="text" placeholder="Agrega tu tarea..." aria-label="text">
             </form>
             <div class="container-sm btn-group p-4 v-center" role="group" aria-label="Default button group" >
                 <!--BOTONES PARA AGREGAR EL TIPO DE TAREA-->
@@ -28,16 +28,21 @@
     <header>
         <!--LISTA DE TAREAS-->
         <div class="container-lg vh-100 ">
-            <h1 class="text-center"><strong><u>Lista de tareas </u></strong></h1>
+            <h1 class="text-center text-decoration-underline"><strong><u>Lista de tareas </u></strong></h1>
+            <div class="empty text-center"><h4 id="empty">No tienes tareas pendientes</h4></div>
             <ul class="lista list-group" id="lista-urgente">
-                <li class="list-group-item"><a href="#"  class="lista-urgente list-group-item list-group-item-action">chano gato</a></li>
+                <li class="list-group-item"><a href="#"  class="lista-urgente list-group-item list-group-item-action">Actividad urgente</a></li>
             </ul>
             <ul class="lista list-group" id="lista-pronto">
-                <li class="list-group-item"><a href="#"  class="lista-pronto list-group-item list-group-item-action">ponete a hacer la lista de tareas</a></li>
+               <li class="list-group-item"><a href="#"  class="lista-pronto list-group-item list-group-item-action">Actividad pronto</a></li>
             </ul>
             <ul class="lista list-group" id="lista-relax">
-                <li class="list-group-item"><a href="#"  class="lista-relax list-group-item list-group-item-action">no me digas mas bueno bueno</a></li>
+               <li class="list-group-item"><a href="#"  class="lista-relax list-group-item list-group-item-action">Actividad en modo relax</a></li>
             </ul>
+            </ul>
+            <ul class="lista list-group" id="lista-relax">
+                <!--<li class="list-group-item"><a href="#"  class="lista-relax list-group-item list-group-item-action"></a></li>-->
+             </ul>
         </div>
     </header>
     <script src="app.js"></script>
