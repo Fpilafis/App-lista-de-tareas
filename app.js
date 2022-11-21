@@ -59,9 +59,17 @@ btnRelax.addEventListener('click', e => {
 const setTareaRelax = e => {
     const texto = placeholder.value
     
-    if (texto.trim() === '') {
+    if (texto.length > 120) {
+        console.log('esta pasado de letras')
+        placeholder.setAttribute("placeholder", "excede 120 caracteres")
+        formulario.reset()
+        alert("Maximo de 120 caracteres")
+        return
+    }
+    else if(texto.trim() === '') {
         console.log('está vacio')
         placeholder.setAttribute("placeholder", "Agrega una tarea valida")
+        alert("Agregar una tarea valida")
         return
     }
     const tarea = {
@@ -85,7 +93,7 @@ const pintarTareas = () => {
     if (Object.values(tareas).length === 0) {
         listaTareas.innerHTML = `
         <div class="alert alert-primary text-center">
-        <strong><u>Sin tareas pendientes</u></strong>
+        <strong><p class="h8"><u>Relax</u></p>Sin tareas pendientes</strong>
         </div>
         `
         return
@@ -169,9 +177,17 @@ btnPronto.addEventListener('click', e => {
 const setTareaPronto = e => {
     const texto = placeholder.value
     
-    if (texto.trim() === '') {
+    if (texto.length > 120) {
+        console.log('esta pasado de letras')
+        placeholder.setAttribute("placeholder", "excede 120 caracteres")
+        formulario.reset()
+        alert("Maximo de 120 caracteres")
+        return
+    }
+    else if(texto.trim() === '') {
         console.log('está vacio')
         placeholder.setAttribute("placeholder", "Agrega una tarea valida")
+        alert("Agregar una tarea valida")
         return
     }
     const tareaPronto = {
@@ -195,7 +211,7 @@ const pintarTareasPronto = () => {
     if (Object.values(tareasPronto).length === 0) {
         listaTareasPronto.innerHTML = `
         <div class="alert alert-success text-center">
-        <strong><u>Sin tareas pendientes</u></strong>
+        <strong><p class="h8"><u>Pronto</u></p>Sin tareas pendientes</strong>
         </div>
         `
         return
@@ -278,9 +294,17 @@ btnUrgente.addEventListener('click', e => {
 
 const setTareaUrgente = e => {
     const texto = placeholder.value
-    if (texto.trim() === '') {
+    if (texto.length > 120) {
+        console.log('esta pasado de letras')
+        placeholder.setAttribute("placeholder", "excede 120 caracteres")
+        formulario.reset()
+        alert("Maximo de 120 caracteres")
+        return
+    }
+    else if(texto.trim() === '') {
         console.log('está vacio')
         placeholder.setAttribute("placeholder", "Agrega una tarea valida")
+        alert("Agregar una tarea valida")
         return
     }
     const tareaUrgente = {
@@ -304,7 +328,7 @@ const pintarTareasUrgente = () => {
     if (Object.values(tareasUrgente).length === 0) {
         listaTareasUrgente.innerHTML = `
         <div class="alert alert-danger text-center">
-        <strong><u>Sin tareas pendientes</u></strong>
+        <strong><p class="h8"><u>Urgente</u></p>Sin tareas pendientes</strong>
         </div>
         `
         return

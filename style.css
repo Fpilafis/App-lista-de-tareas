@@ -47,6 +47,7 @@ header {
     background-color: rgba(0, 0, 0, 0.616);
     border-radius: 15px;
     padding-bottom: 5px;
+    min-width: 280px;
 }
 
 .espacio {
