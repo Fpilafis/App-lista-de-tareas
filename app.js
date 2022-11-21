@@ -1,313 +1,353 @@
 
-
-//variables
-const listaRelax = document.getElementById("lista-relax");
-const listaPronto = document.getElementById("lista-pronto");
-const listaUrgente = document.getElementById("lista-urgente")
-const tareaInput = document.getElementById("tareaInput");
-const btnNuevaTarea = document.getElementById("btn-agregar");
-const btnNuevaTareaPronto = document.getElementById("btn-agregar-pronto");
-const btnNuevaTareaUrgente = document.getElementById("btn-agregar-urgente");
-const empty = document.getElementById("empty")
-const items = document.querySelectorAll("li")   
+//botones
+const btnRelax = document.getElementById("btn-relax")
+const btnPronto = document.getElementById("btn-pronto")
+const btnUrgente = document.getElementById("btn-urgente")
 
 
-/*if(localStorage.getItem("listaRelax")){
-    listaRelax = JSON.parse(localStorage.getItem("listaRelax"))
-}*/
+//VARIABLES
+const formulario = document.getElementById('formulario')
+const placeholder = document.getElementById("placeholder")
+const listaTareas = document.getElementById('lista-tareas')
+const listaTareasPronto = document.getElementById('lista-tareas-pronto')
+const listaTareasUrgente = document.getElementById('lista-tareas-urgente')
+const template = document.getElementById('template').content
+const templateTwo = document.getElementById('templatetwo').content
+const templatethree = document.getElementById('templatethree').content
+const fragment = document.createDocumentFragment()
+let tareas = {}
+let tareasPronto = {}
+let tareasUrgente = {}
 
 
 
-//Funciones
-/*let agregarTarea = function(){
-    let tarea = tareaInput.value;
-    let nuevaTarea = document.createElement("li");
-    let enlace = document.createElement("a")
-    let contenido = document.createTextNode(tarea)
-    if (tarea === "") {
-        tareaInput.setAttribute("placeholder", "Agrega una tarea valida")
-        //tareaInput.className = "error"
-        return false
+//////////////////////////////////////////////////////////////---------------------------//////////////////////////////////////////////////////////
+
+
+//EVENTOS
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('tareas')) {
+        tareas = JSON.parse(localStorage.getItem('tareas'))
     }
-    // Agregamos el contenido al enlace
-    enlace.appendChild(contenido);
-    // Le establecemos un atributo href y class
-    enlace.setAttribute("href", "#");
-    enlace.setAttribute("class", "lista-relax list-group-item list-group-item-action");
-    // Agregamos el enlace a la nuevaTarea
-    nuevaTarea.appendChild(enlace)
-    // Le establecemos el atributo class
-    nuevaTarea.setAttribute("class", "list-group-item")
-    // Agregamos la nuevaTarea (li) a la lista
-    listaRelax.appendChild(nuevaTarea)
+    pintarTareas()
+    console.log(1.2)
+})
 
-    tareaInput.value = "";
 
-    for (let i = 0; i <= listaRelax.children.length -1; i++) {
-        listaRelax.children[i].addEventListener("click", function(){
-            this.parentNode.removeChild(this)
-        })
-    }
-
-    //localStorage.setItem("listaRelax", JSON.stringify(listaRelax))
-};*/
-
-/*let agregarTareaPronto = function(){
-    let tarea = tareaInput.value;
-    let nuevaTarea = document.createElement("li");
-    let enlace = document.createElement("a")
-    let contenido = document.createTextNode(tarea)
-    if (tarea === "") {
-        tareaInput.setAttribute("placeholder", "Agrega una tarea valida")
-        //tareaInput.className = "error"
-        return false
-    }
-    // Agregamos el contenido al enlace
-    enlace.appendChild(contenido);
-    // Le establecemos un atributo href y class
-    enlace.setAttribute("href", "#");
-    enlace.setAttribute("class", "lista-pronto list-group-item list-group-item-action");
-    // Agregamos el enlace a la nuevaTarea
-    nuevaTarea.appendChild(enlace)
-    // Le establecemos el atributo class
-    nuevaTarea.setAttribute("class", "list-group-item")
-    // Agregamos la nuevaTarea (li) a la lista
-    listaPronto.appendChild(nuevaTarea)
-
-    tareaInput.value = "";
-
-    for (let i = 0; i <= listaPronto.children.length -1; i++) {
-        listaPronto.children[i].addEventListener("click", function(){
-            this.parentNode.removeChild(this)
-        });
-    }
-};*/
-
-/*let agregarTareaUrgente = function(){
-    let tarea = tareaInput.value;
-    let nuevaTarea = document.createElement("li");
-    let enlace = document.createElement("a")
-    let contenido = document.createTextNode(tarea)
-    if (tarea === "") {
-        tareaInput.setAttribute("placeholder", "Agrega una tarea valida")
-        //tareaInput.className = "error"
-        return false
-    }
-    // Agregamos el contenido al enlace
-    enlace.appendChild(contenido);
-    // Le establecemos un atributo href y class
-    enlace.setAttribute("href", "#");
-    enlace.setAttribute("class", "lista-urgente list-group-item list-group-item-action");
-    // Agregamos el enlace a la nuevaTarea
-    nuevaTarea.appendChild(enlace)
-    // Le establecemos el atributo class
-    nuevaTarea.setAttribute("class", "list-group-item")
-    // Agregamos la nuevaTarea (li) a la lista
-    listaUrgente.appendChild(nuevaTarea)
-
-    tareaInput.value = "";
-
-    for (let i = 0; i <= listaUrgente.children.length -1; i++) {
-        listaUrgente.children[i].addEventListener("click", function(){
-            this.parentNode.removeChild(this)
-        });
-    }
-};*/
+listaTareas.addEventListener('click', (e) => {btnAccion(e)})
 
 
 
-/*let comprobarInput = () => {
-    tareaInput.setAttribute("placeholder", "Agrega tu tareas");
-};*/
-
-/*let eliminarTarea = () => {
-    this.parentNode.removeChild(this)
-};*/
-
-//Eventos
-//Agregar tarea
-btnNuevaTarea.addEventListener("click", (e) => {
-    let tarea = tareaInput.value;
-    let nuevaTarea = document.createElement("li");
-    let enlace = document.createElement("a")
-    let contenido = document.createTextNode(tarea)
-    
-    if (tarea === "") {
-        tareaInput.setAttribute("placeholder", "Agrega una tarea valida")
-        return false
-    }
-    
-    // Agregamos el contenido(Input) al enlace("a")
-    enlace.appendChild(contenido);
-    // Le establecemos un atributo href y class a enlace("a")
-    enlace.setAttribute("href", "#");
-    enlace.setAttribute("class", "lista-relax list-group-item list-group-item-action");
-    // Agregamos el enlace("a") a la nuevaTarea("li")
-    nuevaTarea.appendChild(enlace)
-    // Le establecemos el atributo class a nuevaTarea("li")
-    nuevaTarea.setAttribute("class", "list-group-item")
-    // Agregamos la nuevaTarea(li) a la lista("ul")
-    listaRelax.appendChild(nuevaTarea)
-    
-    //   Creamos un boton, agregamos la clase y type, lo agregamos al enlace("a") y armamos el evento
-    
-    /*let btnEdit = document.createElement("button")
-    btnEdit.setAttribute("class", "boton btn-danger" )
-    btnEdit.setAttribute("type", "button")
-    btnEdit.innerHTML = "-"
-    enlace.appendChild(btnEdit)
-    btnEdit.addEventListener("click", (e) => {
-        nuevaTarea.parentNode.removeChild(nuevaTarea)
-        if(items.length === 0){empty.style.display = "block"}
-    })*/
-
-
-
-    tareaInput.value = "";
-
-    empty.style.display = "none"
-
-
-
-    //Borrando elementos de la lista
-    for (let i = 0; i <= listaRelax.children.length -1; i++) {
-        listaRelax.children[i].addEventListener("click", function(){
-            this.parentNode.removeChild(this)
-            if(items.length === 0){empty.textContent= "No tienes tareas pendientes"}
-        })
-    }
-        //empty.textContent= ""
-});
-
-btnNuevaTareaPronto.addEventListener("click", (e) => {
-    let tarea = tareaInput.value;
-    let nuevaTarea = document.createElement("li");
-    let enlace = document.createElement("a")
-    let contenido = document.createTextNode(tarea)
-    
-    if (tarea === "") {
-        tareaInput.setAttribute("placeholder", "Agrega una tarea valida")
-        //tareaInput.className = "error"
-        return false
-    }
-    // Agregamos el contenido al enlace
-    enlace.appendChild(contenido);
-    // Le establecemos un atributo href y class
-    enlace.setAttribute("href", "#");
-    enlace.setAttribute("class", "lista-pronto list-group-item list-group-item-action");
-    // Agregamos el enlace a la nuevaTarea
-    nuevaTarea.appendChild(enlace)
-    // Le establecemos el atributo class
-    nuevaTarea.setAttribute("class", "list-group-item")
-    // Agregamos la nuevaTarea (li) a la lista
-    listaPronto.appendChild(nuevaTarea)
-
-    //      Creamos un boton, agregamos la clase y type, lo agregamos al enlace("a") y armamos el evento
-    
-    /*let btnEdit = document.createElement("button")
-    btnEdit.setAttribute("class", "boton btn-danger" )
-    btnEdit.setAttribute("type", "button")
-    btnEdit.innerHTML = "-"
-    enlace.appendChild(btnEdit)
-    btnEdit.addEventListener("click", (e) => {
-        nuevaTarea.parentNode.removeChild(nuevaTarea)
-        if(items.length === 0){empty.style.display = "block"}
-    })*/
-
-
-    tareaInput.value = "";
-
-    empty.style.display = "none"
-
-
-    //Borrar elementos de la lista
-    for (let i = 0; i <= listaPronto.children.length -1; i++) {
-        listaPronto.children[i].addEventListener("click", function(){
-            this.parentNode.removeChild(this)
-        });
-        if(items.length === 0){empty.textContent= "No tienes tareas pendientes"}
-        
-    }
-    /*empty.textContent= ""*/
-});
-
-btnNuevaTareaUrgente.addEventListener("click", (e) => {
-    let tarea = tareaInput.value;
-    let nuevaTarea = document.createElement("li");
-    let enlace = document.createElement("a")
-    let contenido = document.createTextNode(tarea)
-    
-    if (tarea === "") {
-        tareaInput.setAttribute("placeholder", "Agrega una tarea valida")
-        //tareaInput.className = "error"
-        return false
-    }
-    // Agregamos el contenido al enlace
-    enlace.appendChild(contenido);
-    // Le establecemos un atributo href y class
-    enlace.setAttribute("href", "#");
-    enlace.setAttribute("class", "lista-urgente list-group-item list-group-item-action");
-    // Agregamos el enlace a la nuevaTarea
-    nuevaTarea.appendChild(enlace)
-    // Le establecemos el atributo class
-    nuevaTarea.setAttribute("class", "list-group-item")
-    // Agregamos la nuevaTarea (li) a la lista
-    listaUrgente.appendChild(nuevaTarea)
-
-    tareaInput.value = "";
-    
-    //      Creamos un boton, agregamos la clase y type, lo agregamos al enlace("a") y armamos el evento
-    
-    /*let btnEdit = document.createElement("button")
-    btnEdit.setAttribute("class", "boton btn-danger" )
-    btnEdit.setAttribute("type", "button")
-    btnEdit.innerHTML = "-"
-    enlace.appendChild(btnEdit)
-    btnEdit.addEventListener("click", (e) => {
-        nuevaTarea.parentNode.removeChild(nuevaTarea)
-        if(items.length === 0){empty.style.display = "block"}
-    })*/
-
-
-    tareaInput.value = "";
-
-    empty.style.display = "none"
-
-    //Borrar elementos de la lista
-    for (let i = 0; i <= listaUrgente.children.length -1; i++) {
-        listaUrgente.children[i].addEventListener("click", function(){
-            this.parentNode.removeChild(this)
-        });
-        if(items.length === 0){empty.textContent= "No tienes tareas pendientes"}
-    }
-    /*empty.textContent= ""*/
+//Si apretas el input
+placeholder.addEventListener("click", (e) => {
+    placeholder.setAttribute("placeholder", "Ingrese tarea");
 });
 
 
-//Comprobar input
-tareaInput.addEventListener("click", (e) => {
-    tareaInput.setAttribute("placeholder", "Agrega tu tareas");
-});
 
-//Borrando elementos de la lista
+btnRelax.addEventListener('click', e => {
+    //e.preventDefault()
+    // console.log(e.target[0].value)
+    // console.log(e.target.querySelector('input').value)
+    setTareaRelax(e)
+})
 
-for (let i = 0; i <= listaRelax.children.length -1; i++) {
-    listaRelax.children[i].addEventListener("click", function(){
-        this.parentNode.removeChild(this)
+
+//FUNCIONES
+
+//
+const setTareaRelax = e => {
+    const texto = placeholder.value
+    
+    if (texto.trim() === '') {
+        console.log('está vacio')
+        placeholder.setAttribute("placeholder", "Agrega una tarea valida")
+        return
+    }
+    const tarea = {
+        id: Date.now(),
+        texto: texto,
+        estado: false
+    }
+
+    placeholder.setAttribute("placeholder", "Ingrese tarea")
+    tareas[tarea.id] = tarea
+    pintarTareas()
+
+    formulario.reset()
+}
+
+
+const pintarTareas = () => {
+    
+    localStorage.setItem('tareas', JSON.stringify(tareas))
+
+    if (Object.values(tareas).length === 0) {
+        listaTareas.innerHTML = `
+        <div class="alert alert-primary text-center">
+        <strong><u>Sin tareas pendientes</u></strong>
+        </div>
+        `
+        return
+    }
+    
+    listaTareas.innerHTML = ''
+
+    Object.values(tareas).forEach(tarea => {
+        const clone = template.cloneNode(true)
+        clone.querySelector('p').textContent = tarea.texto
+
+        if (tarea.estado) {
+            clone.querySelectorAll('.fas')[0].classList.replace('fa-check-circle', 'fa-undo-alt')
+            clone.querySelector('.alert').classList.replace('alert-primary', 'alert-dark')
+            clone.querySelector('p').style.textDecoration = 'line-through'
+        }
+
+        clone.querySelectorAll('.fas')[0].dataset.id = tarea.id
+        clone.querySelectorAll('.fas')[1].dataset.id = tarea.id
+        fragment.appendChild(clone)
     })
-    if(items.length === 0){empty.textContent= "No tienes tareas pendientes"}
+    listaTareas.appendChild(fragment)
 }
 
-for (let i = 0; i <= listaUrgente.children.length -1; i++) {
-    listaUrgente.children[i].addEventListener("click", function(){
-        this.parentNode.removeChild(this)
-    });
-    if(items.length === 0){empty.textContent= "No tienes tareas pendientes"}
+const btnAccion = e => {
+    //console.log(e.target.classList.contains('fa-check-circle'), "btnAccion")
+    if (e.target.classList.contains('fa-check-circle')) {
+        tareas[e.target.dataset.id].estado = true
+        pintarTareas()
+    }
+
+    if (e.target.classList.contains('fa-minus-circle')) {
+        // console.log(e.target.dataset.id)
+        delete tareas[e.target.dataset.id]
+        pintarTareas()
+    }
+
+    if (e.target.classList.contains('fa-undo-alt')) {
+        tareas[e.target.dataset.id].estado = false
+        pintarTareas()
+    }
+
+    e.stopPropagation()
 }
 
-for (let i = 0; i <= listaPronto.children.length -1; i++) {
-    listaPronto.children[i].addEventListener("click", function(){
-        this.parentNode.removeChild(this)
-    });
-    if(items.length === 0){empty.textContent= "No tienes tareas pendientes"}
+
+
+
+//////////////////////////////////////////////////////////////---------------------------//////////////////////////////////////////////////////////
+
+
+
+
+
+//LISTA PRONTO
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('tareass')) {
+        tareasPronto = JSON.parse(localStorage.getItem('tareass'))
+    }
+    pintarTareasPronto()
+    console.log("1.1")
+})
+
+listaTareasPronto.addEventListener('click', (e) => {btnAccionPronto(e)})
+
+
+btnPronto.addEventListener('click', e => {
+    //e.preventDefault()
+    // console.log(e.target[0].value)
+    // console.log(e.target.querySelector('input').value)
+    setTareaPronto(e)
+})
+
+
+//FUNCIONES
+
+
+const setTareaPronto = e => {
+    const texto = placeholder.value
+    
+    if (texto.trim() === '') {
+        console.log('está vacio')
+        placeholder.setAttribute("placeholder", "Agrega una tarea valida")
+        return
+    }
+    const tareaPronto = {
+        id: Date.now(),
+        texto: texto,
+        estado: false
+    }
+
+    placeholder.setAttribute("placeholder", "Ingrese tarea")
+    tareasPronto[tareaPronto.id] = tareaPronto
+    pintarTareasPronto()
+
+    formulario.reset()
 }
+
+
+const pintarTareasPronto = () => {
+    
+    localStorage.setItem('tareass', JSON.stringify(tareasPronto))
+
+    if (Object.values(tareasPronto).length === 0) {
+        listaTareasPronto.innerHTML = `
+        <div class="alert alert-success text-center">
+        <strong><u>Sin tareas pendientes</u></strong>
+        </div>
+        `
+        return
+    }
+    
+    listaTareasPronto.innerHTML = ''
+
+    Object.values(tareasPronto).forEach(tareaPronto => {
+        const clone = templateTwo.cloneNode(true)
+        clone.querySelector('p').textContent = tareaPronto.texto
+
+        if (tareaPronto.estado) {
+            clone.querySelectorAll('.fas')[0].classList.replace('fa-check-circle', 'fa-undo-alt')
+            clone.querySelector('.alert').classList.replace('alert-success', 'alert-dark')
+            clone.querySelector('p').style.textDecoration = 'line-through'
+        }
+
+        clone.querySelectorAll('.fas')[0].dataset.id = tareaPronto.id
+        clone.querySelectorAll('.fas')[1].dataset.id = tareaPronto.id
+        fragment.appendChild(clone)
+    })
+    listaTareasPronto.appendChild(fragment)
+}
+
+
+const btnAccionPronto = e => {
+    // console.log(e.target.classList.contains('fa-check-circle'))
+    if (e.target.classList.contains('fa-check-circle')) {
+        tareasPronto[e.target.dataset.id].estado = true
+        pintarTareasPronto()
+    }
+
+    if (e.target.classList.contains('fa-minus-circle')) {
+        // console.log(e.target.dataset.id)
+        delete tareasPronto[e.target.dataset.id]
+        pintarTareasPronto()
+    }
+
+    if (e.target.classList.contains('fa-undo-alt')) {
+        tareasPronto[e.target.dataset.id].estado = false
+        pintarTareasPronto()
+    }
+
+    e.stopPropagation()
+};
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////---------------------------//////////////////////////////////////////////////////////
+
+
+// LISTA URGENTE Urgente
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('tareasss')) {
+        tareasUrgente = JSON.parse(localStorage.getItem('tareasss'))
+    }
+    pintarTareasUrgente()
+});
+
+listaTareasUrgente.addEventListener('click', (e) => {btnAccionUrgente(e)});
+
+
+btnUrgente.addEventListener('click', e => {
+    //e.preventDefault()
+    // console.log(e.target[0].value)
+    // console.log(e.target.querySelector('input').value)
+    setTareaUrgente(e)
+});
+
+
+//FUNCIONES
+
+
+const setTareaUrgente = e => {
+    const texto = placeholder.value
+    if (texto.trim() === '') {
+        console.log('está vacio')
+        placeholder.setAttribute("placeholder", "Agrega una tarea valida")
+        return
+    }
+    const tareaUrgente = {
+        id: Date.now(),
+        texto: texto,
+        estado: false
+    }
+
+    placeholder.setAttribute("placeholder", "Ingrese tarea")
+    tareasUrgente[tareaUrgente.id] = tareaUrgente
+    pintarTareasUrgente()
+
+    formulario.reset()
+}
+
+
+const pintarTareasUrgente = () => {
+
+    localStorage.setItem('tareasss', JSON.stringify(tareasUrgente))
+
+    if (Object.values(tareasUrgente).length === 0) {
+        listaTareasUrgente.innerHTML = `
+        <div class="alert alert-danger text-center">
+        <strong><u>Sin tareas pendientes</u></strong>
+        </div>
+        `
+        return
+    }
+    
+    listaTareasUrgente.innerHTML = ''
+
+    Object.values(tareasUrgente).forEach(tareaUrgente => {
+        const clone = templatethree.cloneNode(true)
+        clone.querySelector('p').textContent = tareaUrgente.texto
+
+        if (tareaUrgente.estado) {
+            clone.querySelectorAll('.fas')[0].classList.replace('fa-check-circle', 'fa-undo-alt')
+            clone.querySelector('.alert').classList.replace('alert-danger', 'alert-dark')
+            clone.querySelector('p').style.textDecoration = 'line-through'
+        }
+
+        clone.querySelectorAll('.fas')[0].dataset.id = tareaUrgente.id
+        clone.querySelectorAll('.fas')[1].dataset.id = tareaUrgente.id
+        fragment.appendChild(clone)
+    })
+    listaTareasUrgente.appendChild(fragment)
+}
+
+
+const btnAccionUrgente = e => {
+    // console.log(e.target.classList.contains('fa-check-circle'))
+    if (e.target.classList.contains('fa-check-circle')) {
+        tareasUrgente[e.target.dataset.id].estado = true
+        pintarTareasUrgente()
+    }
+
+    if (e.target.classList.contains('fa-minus-circle')) {
+        // console.log(e.target.dataset.id)
+        delete tareasUrgente[e.target.dataset.id]
+        pintarTareasUrgente()
+    }
+
+    if (e.target.classList.contains('fa-undo-alt')) {
+        tareasUrgente[e.target.dataset.id].estado = false
+        pintarTareasUrgente()
+    }
+
+    e.stopPropagation()
+}
+
