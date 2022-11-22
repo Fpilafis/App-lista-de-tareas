@@ -14,31 +14,31 @@
             <h1 class="my-5 text-center"><strong>Agregar Tareas</strong></h1>
             <form class= "form" id="formulario">
                 <input type="text" placeholder="Ingrese tarea" class="form-control my-2" id="placeholder">
-                <div class="container-sm btn-group p-4 v-center" role="group">
-                    <button class="btn btn-primary" type="submit" id="btn-relax">Relax</button>
-                    <button class="btn btn-success" type="submit" id="btn-pronto">Pronto</button>
-                    <button class="btn btn-danger" type="submit" id="btn-urgente">Urgente</button>
+                <div class="container-sm btn-group p-4 v-center" id="botones" role="group">
+                    <button class="btn btn-primary btn-relax" type="submit" id="btn-relax">Relax</button>
+                    <button class="btn btn-success btn-pronto" type="submit" id="btn-pronto">Pronto</button>
+                    <button class="btn btn-danger btn-urgente" type="submit" id="btn-urgente">Urgente</button>
                 </div>
             </form>
         </div>
     </nav>
     <header class="">
-        <div class="container">
+        <div class="container" id="listas">
             <div class="container espacio"></div>
             <div class="container contain-title">
                 <h2 class="h1 title text-center text-decoration-underline"><strong><u>Lista de tareas </u></strong></h2>
             
-            <div id="lista-tareas-urgente" class="mt-2">
+            <div id="lista-tareas-urgente" class="mt-2 lista-tareas-urgente">
                 <div class="alert alert-dark">
                 3° Sin tareas pendiente
                 </div>
             </div>
-            <div id="lista-tareas-pronto" class="mt-2">
+            <div id="lista-tareas-pronto" class="mt-2 lista-tareas-pronto">
                 <div class="alert alert-dark">
                 2° Sin tareas pendiente
                 </div>
             </div>
-            <div id="lista-tareas" class="mt-2">
+            <div id="lista-tareas" class="mt-2 lista-tareas">
                 <div class="alert alert-dark">
                 1° Sin tareas pendiente
                 </div>
@@ -49,33 +49,33 @@
     
 
     <template id="template">
-        <div class="alert alert-primary d-flex justify-content-between align-items-center">
+        <div class="alert lista-tareas btn-relax alert-primary d-flex justify-content-between align-items-center">
             <p class="m-0">Tarea #1</p>
             <h3 class="m-0">
-                <i class="fas fa-check-circle text-success" role="button"></i>
-                <i class="fas fa-minus-circle text-danger"  role="button"></i>
+                <i class="fas lista-tareas fa-check-circle text-success" role="button"></i>
+                <i class="fas lista-tareas fa-minus-circle text-danger"  role="button"></i>
             </h3>
         </div>
     </template>
     
     
     <template id="templatetwo">
-        <div class="alert alert-success d-flex justify-content-between align-items-center">
+        <div class="alert lista-tareas-pronto btn-pronto alert-success d-flex justify-content-between align-items-center">
             <p class="m-0">Tarea #1</p>
             <h3 class="m-0">
-                <i class="fas fa-check-circle text-success" role="button"></i>
-                <i class="fas fa-minus-circle text-danger"  role="button"></i>
+                <i class="fas lista-tareas-pronto fa-check-circle text-success" role="button"></i>
+                <i class="fas lista-tareas-pronto fa-minus-circle text-danger"  role="button"></i>
             </h3>
         </div>
     </template>
     
 
     <template id="templatethree">
-        <div class="alert alert-danger d-flex justify-content-between align-items-center">
+        <div class="alert lista-tareas-urgente btn-urgente alert-danger d-flex justify-content-between align-items-center">
             <p class="m-0">Tarea #1</p>
             <h3 class="m-0">
-                <i class="fas fa-check-circle text-success" role="button"></i>
-                <i class="fas fa-minus-circle text-danger"  role="button"></i>
+                <i class="fas lista-tareas-urgente fa-check-circle text-success" role="button"></i>
+                <i class="fas lista-tareas-urgente fa-minus-circle text-danger"  role="button"></i>
             </h3>
         </div>
     </template>
